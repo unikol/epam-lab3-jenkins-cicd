@@ -9,4 +9,4 @@ COPY . /opt
 
 EXPOSE 3000
 
-ENTRYPOINT ["npm", "run", "start"]
+CMD ["npm", "run", "start"]
