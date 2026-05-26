@@ -15,14 +15,14 @@ pipeline {
         stage('build') {
             steps {
                 echo "Building application for branch: ${APP_BRANCH}"
-                bat 'docker build -t node-${BRANCH_NAME}:latest .'
+                bat 'docker build -t node-%BRANCH_NAME%:latest .'
             }
         }
 
         stage('test') {
             steps {
                 echo "Running test stage for branch: ${APP_BRANCH}"
-                bat 'docker run --rm node-${BRANCH_NAME}:latest npm test -- --watchAll=false'
+                bat 'docker run --rm -e CI=true node-%BRANCH_NAME%:latest npm test -- --watchAll=false'
             }
         }
 
